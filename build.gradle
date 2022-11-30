@@ -1,5 +1,7 @@
 plugins {
 	id 'java'
+	  id 'com.gorylenko.gradle-git-properties' version '2.4.0'
+	//	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 group = 'com.example1'
 version = '0.0.1-SNAPSHOT'
@@ -12,7 +14,9 @@ repositories {
 }
 
 dependencies {
+	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	 implementation 'org.springframework.boot:spring-boot-starter-web:2.1.7.RELEASE'
+	 implementation 'org.springframework.boot:spring-boot-starter-actuator:2.1.7.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-jetty:2.1.7.RELEASE'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:2.1.7.RELEASE'
     implementation 'io.springfox:springfox-swagger-common:2.9.2'
@@ -29,3 +33,4 @@ tasks.named('test') {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
