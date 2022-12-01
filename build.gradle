@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	    id 'java-gradle-plugin'
 	  id 'com.gorylenko.gradle-git-properties' version '2.4.0'
 	//	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
@@ -11,7 +12,8 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
-}
+		maven { url 'https://plugins.gradle.org/m2' }
+	}
 
 dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -23,6 +25,9 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.7.RELEASE'
+    // https://mvnrepository.com/artifact/com.gorylenko.gradle-git-properties/com.gorylenko.gradle-git-properties.gradle.plugin
+implementation 'com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.1'
+    
 }
 
 tasks.named('test') {
@@ -33,4 +38,21 @@ tasks.named('test') {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+//environments {
+gitProperties {
+    keys = ['git.branch','git.commit.id','git.commit.time']
+}
 
+
+
+
+gitProperties {
+  //dotGitDirectory = "${project.rootDir}/.git"
+   // gitRepositoryRoot = new File("${project.rootDir}/..")
+  dotGitDirectory  = new File("${project.rootDir}/..")
+    dateFormat = "yyyy-MM-dd'T'HH:mmZ"
+    dateFormatTimeZone = "Asia/Kolkata"
+    
+        gitPropertiesResourceDir = new File("${project.rootDir}")
+}
+ 
